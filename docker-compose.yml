@@ -3,6 +3,7 @@ version: '3.7'
 
 services:
 
+  # https://hub.docker.com/r/patrikx3/p3x-redis-ui
   redis-ui:
     image: patrikx3/p3x-redis-ui:2023.10.252
     ports:
@@ -12,6 +13,7 @@ services:
     volumes:
       - ./p3x-redis-ui-settings:/settings
 
+  # TODO limit memory
   redis-master:
     image: redis:7.2.3
     volumes:
@@ -19,6 +21,7 @@ services:
     ports:
       - "6379:6379"
 
+  # TODO limit memory
   redis-slave:
     image: redis:7.2.3
     command: redis-server --slaveof redis-master 6379
